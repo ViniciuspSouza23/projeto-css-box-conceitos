@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Model & Flexbox Interativo</title>
+  <!-- Importação Externa do CSS através da tag <link> -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonte moderna do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- CABEÇALHO HERO COM FLEXBOX -->
+  <header class="header-container" id="topo">
+    <div class="header-brand">
+      <span class="badge">Guia Interativo</span>
+      <h1 class="main-title">CSS Box Model & Flexbox Master</h1>
+      <p class="subtitle">Demonstração prática dos conceitos de Content, Padding, Border e Margin aplicados em 20 elementos com 20 propriedades Flexbox responsivas.</p>
+    </div>
+    
+    <nav class="header-nav">
+      <a href="#box-model" class="nav-btn">1. Box Model (20 Elementos)</a>
+      <a href="#flexbox-demo" class="nav-btn">2. Demonstração Flexbox</a>
+      <a href="#propriedades-flex" class="nav-btn">3. Lista de 20 Propriedades</a>
+    </nav>
+  </header>
+
+  <main class="main-wrapper">
+
+    <!-- SEÇÃO 1: OS 20 ELEMENTOS COM BOX MODEL COMPLETO -->
+    <section class="section" id="box-model">
+      <div class="section-heading">
+        <h2 class="section-title">📦 Os 20 Elementos (Box Model Completo)</h2>
+        <p class="section-desc">
+          Cada um dos 20 elementos abaixo possui valores individuais e explícitos definidos nas 4 camadas essenciais:
+          <strong>Content (width/height)</strong>, <strong>Padding</strong>, <strong>Border</strong> e <strong>Margin</strong>.
+        </p>
+      </div>
+
+      <!-- Container Flexbox com ordenação e distribuição responsiva dos 20 elementos -->
+      <div class="box-gallery-container">
+        
+        <!-- Elemento 01 -->
+        <article class="box-element item-01" id="elem-1">
+          <div class="elem-badge">01</div>
+          <h3 class="elem-title">Elemento Alpha</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 260x180px</span>
+            <span class="spec-tag">Padding: 16px</span>
+            <span class="spec-tag">Border: 3px solid #6366f1</span>
+            <span class="spec-tag">Margin: 14px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 02 -->
+        <article class="box-element item-02" id="elem-2">
+          <div class="elem-badge">02</div>
+          <h3 class="elem-title">Elemento Beta</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 270x190px</span>
+            <span class="spec-tag">Padding: 18px</span>
+            <span class="spec-tag">Border: 4px dashed #3b82f6</span>
+            <span class="spec-tag">Margin: 12px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 03 -->
+        <article class="box-element item-03" id="elem-3">
+          <div class="elem-badge">03</div>
+          <h3 class="elem-title">Elemento Gamma</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 280x200px</span>
+            <span class="spec-tag">Padding: 20px</span>
+            <span class="spec-tag">Border: 3px double #10b981</span>
+            <span class="spec-tag">Margin: 16px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 04 -->
+        <article class="box-element item-04" id="elem-4">
+          <div class="elem-badge">04</div>
+          <h3 class="elem-title">Elemento Delta</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 250x175px</span>
+            <span class="spec-tag">Padding: 14px</span>
+            <span class="spec-tag">Border: 2px solid #f59e0b</span>
+            <span class="spec-tag">Margin: 15px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 05 -->
+        <article class="box-element item-05" id="elem-5">
+          <div class="elem-badge">05</div>
+          <h3 class="elem-title">Elemento Epsilon</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 290x185px</span>
+            <span class="spec-tag">Padding: 22px</span>
+            <span class="spec-tag">Border: 4px groove #ef4444</span>
+            <span class="spec-tag">Margin: 18px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 06 -->
+        <article class="box-element item-06" id="elem-6">
+          <div class="elem-badge">06</div>
+          <h3 class="elem-title">Elemento Zeta</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 275x195px</span>
+            <span class="spec-tag">Padding: 15px</span>
+            <span class="spec-tag">Border: 3px dotted #ec4899</span>
+            <span class="spec-tag">Margin: 10px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 07 -->
+        <article class="box-element item-07" id="elem-7">
+          <div class="elem-badge">07</div>
+          <h3 class="elem-title">Elemento Eta</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 265x180px</span>
+            <span class="spec-tag">Padding: 19px</span>
+            <span class="spec-tag">Border: 3px solid #8b5cf6</span>
+            <span class="spec-tag">Margin: 13px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 08 -->
+        <article class="box-element item-08" id="elem-8">
+          <div class="elem-badge">08</div>
+          <h3 class="elem-title">Elemento Theta</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 285x190px</span>
+            <span class="spec-tag">Padding: 17px</span>
+            <span class="spec-tag">Border: 4px ridge #06b6d4</span>
+            <span class="spec-tag">Margin: 15px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 09 -->
+        <article class="box-element item-09" id="elem-9">
+          <div class="elem-badge">09</div>
+          <h3 class="elem-title">Elemento Iota</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 260x170px</span>
+            <span class="spec-tag">Padding: 21px</span>
+            <span class="spec-tag">Border: 2px dashed #14b8a6</span>
+            <span class="spec-tag">Margin: 11px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 10 -->
+        <article class="box-element item-10" id="elem-10">
+          <div class="elem-badge">10</div>
+          <h3 class="elem-title">Elemento Kappa</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 270x205px</span>
+            <span class="spec-tag">Padding: 16px</span>
+            <span class="spec-tag">Border: 3px solid #f97316</span>
+            <span class="spec-tag">Margin: 17px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 11 -->
+        <article class="box-element item-11" id="elem-11">
+          <div class="elem-badge">11</div>
+          <h3 class="elem-title">Elemento Lambda</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 280x185px</span>
+            <span class="spec-tag">Padding: 23px</span>
+            <span class="spec-tag">Border: 4px double #a855f7</span>
+            <span class="spec-tag">Margin: 14px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 12 -->
+        <article class="box-element item-12" id="elem-12">
+          <div class="elem-badge">12</div>
+          <h3 class="elem-title">Elemento Mu</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 255x175px</span>
+            <span class="spec-tag">Padding: 15px</span>
+            <span class="spec-tag">Border: 2px solid #84cc16</span>
+            <span class="spec-tag">Margin: 16px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 13 -->
+        <article class="box-element item-13" id="elem-13">
+          <div class="elem-badge">13</div>
+          <h3 class="elem-title">Elemento Nu</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 275x190px</span>
+            <span class="spec-tag">Padding: 20px</span>
+            <span class="spec-tag">Border: 3px dashed #0284c7</span>
+            <span class="spec-tag">Margin: 12px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 14 -->
+        <article class="box-element item-14" id="elem-14">
+          <div class="elem-badge">14</div>
+          <h3 class="elem-title">Elemento Xi</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 265x180px</span>
+            <span class="spec-tag">Padding: 18px</span>
+            <span class="spec-tag">Border: 4px solid #e11d48</span>
+            <span class="spec-tag">Margin: 15px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 15 -->
+        <article class="box-element item-15" id="elem-15">
+          <div class="elem-badge">15</div>
+          <h3 class="elem-title">Elemento Omicron</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 290x200px</span>
+            <span class="spec-tag">Padding: 24px</span>
+            <span class="spec-tag">Border: 3px dotted #d97706</span>
+            <span class="spec-tag">Margin: 19px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 16 -->
+        <article class="box-element item-16" id="elem-16">
+          <div class="elem-badge">16</div>
+          <h3 class="elem-title">Elemento Pi</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 260x170px</span>
+            <span class="spec-tag">Padding: 14px</span>
+            <span class="spec-tag">Border: 2px solid #059669</span>
+            <span class="spec-tag">Margin: 13px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 17 -->
+        <article class="box-element item-17" id="elem-17">
+          <div class="elem-badge">17</div>
+          <h3 class="elem-title">Elemento Rho</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 270x190px</span>
+            <span class="spec-tag">Padding: 22px</span>
+            <span class="spec-tag">Border: 3px ridge #7c3aed</span>
+            <span class="spec-tag">Margin: 16px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 18 -->
+        <article class="box-element item-18" id="elem-18">
+          <div class="elem-badge">18</div>
+          <h3 class="elem-title">Elemento Sigma</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 285x195px</span>
+            <span class="spec-tag">Padding: 17px</span>
+            <span class="spec-tag">Border: 4px double #2563eb</span>
+            <span class="spec-tag">Margin: 14px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 19 -->
+        <article class="box-element item-19" id="elem-19">
+          <div class="elem-badge">19</div>
+          <h3 class="elem-title">Elemento Tau</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 255x180px</span>
+            <span class="spec-tag">Padding: 16px</span>
+            <span class="spec-tag">Border: 2px dashed #db2777</span>
+            <span class="spec-tag">Margin: 11px</span>
+          </div>
+        </article>
+
+        <!-- Elemento 20 -->
+        <article class="box-element item-20" id="elem-20">
+          <div class="elem-badge">20</div>
+          <h3 class="elem-title">Elemento Upsilon</h3>
+          <div class="elem-specs">
+            <span class="spec-tag">Content: 300x210px</span>
+            <span class="spec-tag">Padding: 25px</span>
+            <span class="spec-tag">Border: 4px solid #10b981</span>
+            <span class="spec-tag">Margin: 20px</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: DEMONSTRAÇÃO PRÁTICA DAS PROPRIEDADES FLEXBOX -->
+    <section class="section" id="flexbox-demo">
+      <div class="section-heading">
+        <h2 class="section-title">⚡ Demonstrações Práticas de Flexbox</h2>
+        <p class="section-desc">Exemplos reais manipulando e organizando itens através de contêineres flexíveis e propriedades de alinhamento.</p>
+      </div>
+
+      <!-- Demo A: Justify Content & Flex Wrap -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h4>1. Distribuição com <code>justify-content: space-between</code> & <code>flex-wrap: wrap</code></h4>
+        </div>
+        <div class="flex-showcase showcase-between">
+          <div class="flex-box-item highlight-1">Item A (flex-grow: 1)</div>
+          <div class="flex-box-item highlight-2">Item B (flex-grow: 2)</div>
+          <div class="flex-box-item highlight-3">Item C (order: -1)</div>
+          <div class="flex-box-item highlight-4">Item D (align-self: flex-end)</div>
+        </div>
+      </div>
+
+      <!-- Demo B: Column Direction & Align Items -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h4>2. Fluxo Vertical com <code>flex-direction: column</code> & <code>align-items: center</code></h4>
+        </div>
+        <div class="flex-showcase showcase-column">
+          <div class="flex-box-item col-item-1">Item Superior (align-self: flex-start)</div>
+          <div class="flex-box-item col-item-2">Item Central (align-self: center)</div>
+          <div class="flex-box-item col-item-3">Item Inferior (align-self: flex-end)</div>
+        </div>
+      </div>
+
+      <!-- Demo C: Inline-Flex e Space Evenly -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h4>3. Inline-Flex Container com <code>justify-content: space-evenly</code> & <code>gap: 16px</code></h4>
+        </div>
+        <div class="inline-flex-wrapper">
+          <div class="flex-showcase showcase-inline">
+            <span class="badge-tag">Tag 1</span>
+            <span class="badge-tag">Tag 2</span>
+            <span class="badge-tag">Tag 3</span>
+            <span class="badge-tag">Tag 4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: AS 20 PROPRIEDADES DE FLEXBOX LISTADAS -->
+    <section class="section" id="propriedades-flex">
+      <div class="section-heading">
+        <h2 class="section-title">📋 20 Propriedades do Flexbox Aplicadas</h2>
+        <p class="section-desc">Referência didática de todas as 20 propriedades e valores de Flexbox implementados no projeto para controle responsivo:</p>
+      </div>
+
+      <div class="props-grid-container">
+        <!-- 1 -->
+        <div class="prop-card">
+          <span class="prop-num">#01</span>
+          <code>display: flex;</code>
+          <p>Define o elemento como um contêiner flexível de bloco.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="prop-card">
+          <span class="prop-num">#02</span>
+          <code>display: inline-flex;</code>
+          <p>Cria um contêiner flexível que se comporta inline no fluxo do texto.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="prop-card">
+          <span class="prop-num">#03</span>
+          <code>flex-direction: row;</code>
+          <p>Organiza os itens no eixo principal horizontal da esquerda para a direita.</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="prop-card">
+          <span class="prop-num">#04</span>
+          <code>flex-direction: column;</code>
+          <p>Organiza os itens no eixo vertical de cima para baixo.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="prop-card">
+          <span class="prop-num">#05</span>
+          <code>flex-direction: row-reverse;</code>
+          <p>Inverte o sentido horizontal dos elementos flexíveis.</p>
+        </div>
+
+        <!-- 6 -->
+        <div class="prop-card">
+          <span class="prop-num">#06</span>
+          <code>flex-direction: column-reverse;</code>
+          <p>Inverte a ordem vertical dos elementos filhos.</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="prop-card">
+          <span class="prop-num">#07</span>
+          <code>flex-wrap: wrap;</code>
+          <p>Permite que os itens quebrem linha quando não couberem na mesma fileira.</p>
+        </div>
+
+        <!-- 8 -->
+        <div class="prop-card">
+          <span class="prop-num">#08</span>
+          <code>flex-wrap: nowrap;</code>
+          <p>Força todos os itens flexíveis a permanecerem na mesma linha.</p>
+        </div>
+
+        <!-- 9 -->
+        <div class="prop-card">
+          <span class="prop-num">#09</span>
+          <code>flex-wrap: wrap-reverse;</code>
+          <p>Quebra os itens para linhas adicionais no sentido inverso.</p>
+        </div>
+
+        <!-- 10 -->
+        <div class="prop-card">
+          <span class="prop-num">#10</span>
+          <code>flex-flow: row wrap;</code>
+          <p>Atalho (shorthand) combinando <code>flex-direction</code> e <code>flex-wrap</code>.</p>
+        </div>
+
+        <!-- 11 -->
+        <div class="prop-card">
+          <span class="prop-num">#11</span>
+          <code>justify-content: center;</code>
+          <p>Centraliza os itens ao longo do eixo principal.</p>
+        </div>
+
+        <!-- 12 -->
+        <div class="prop-card">
+          <span class="prop-num">#12</span>
+          <code>justify-content: space-between;</code>
+          <p>Distribui itens com espaçamento uniforme; o primeiro e último nas bordas.</p>
+        </div>
+
+        <!-- 13 -->
+        <div class="prop-card">
+          <span class="prop-num">#13</span>
+          <code>justify-content: space-around;</code>
+          <p>Distribui itens com espaço igual ao redor de cada um deles.</p>
+        </div>
+
+        <!-- 14 -->
+        <div class="prop-card">
+          <span class="prop-num">#14</span>
+          <code>justify-content: space-evenly;</code>
+          <p>Distribui itens de modo que todos os espaços intermediários e bordas sejam iguais.</p>
+        </div>
+
+        <!-- 15 -->
+        <div class="prop-card">
+          <span class="prop-num">#15</span>
+          <code>align-items: center;</code>
+          <p>Alinha os itens no centro do eixo cruzado (perpendicular).</p>
+        </div>
+
+        <!-- 16 -->
+        <div class="prop-card">
+          <span class="prop-num">#16</span>
+          <code>align-items: stretch;</code>
+          <p>Estica os itens para preencher toda a altura/largura do contêiner.</p>
+        </div>
+
+        <!-- 17 -->
+        <div class="prop-card">
+          <span class="prop-num">#17</span>
+          <code>align-content: space-between;</code>
+          <p>Controla o alinhamento das linhas flexíveis em contêineres com quebra de linha.</p>
+        </div>
+
+        <!-- 18 -->
+        <div class="prop-card">
+          <span class="prop-num">#18</span>
+          <code>gap: 24px;</code>
+          <p>Define o espaçamento entre colunas e linhas sem necessidade de margins manuais.</p>
+        </div>
+
+        <!-- 19 -->
+        <div class="prop-card">
+          <span class="prop-num">#19</span>
+          <code>order: 1;</code>
+          <p>Modifica a sequência de exibição visual de um item flex específico.</p>
+        </div>
+
+        <!-- 20 -->
+        <div class="prop-card">
+          <span class="prop-num">#20</span>
+          <code>flex-grow: 1;</code>
+          <p>Define a capacidade de um item crescer para preencher o espaço restante disponível.</p>
+        </div>
+
+        <!-- Extras de Flexbox aplicados no projeto -->
+        <div class="prop-card">
+          <span class="prop-num">#21</span>
+          <code>flex-shrink: 0;</code>
+          <p>Impede que o elemento seja comprimido quando o contêiner encolhe.</p>
+        </div>
+
+        <div class="prop-card">
+          <span class="prop-num">#22</span>
+          <code>flex-basis: 270px;</code>
+          <p>Determina o tamanho base inicial do item antes da distribuição de espaço restante.</p>
+        </div>
+
+        <div class="prop-card">
+          <span class="prop-num">#23</span>
+          <code>flex: 1 1 260px;</code>
+          <p>Shorthand combinando flex-grow, flex-shrink e flex-basis em uma única declaração.</p>
+        </div>
+
+        <div class="prop-card">
+          <span class="prop-num">#24</span>
+          <code>align-self: flex-end;</code>
+          <p>Permite que um item filho individual sobrescreva a regra align-items do pai.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ RESPONSIVO EM FLEXBOX -->
+  <footer class="footer-container">
+    <p class="footer-copy">&copy; 2026 Projeto CSS Box Conceitos & Flexbox - Desenvolvido com HTML5 & Vanilla CSS</p>
+    <a href="#topo" class="back-to-top">Voltar ao topo ↑</a>
+  </footer>
+
+</body>
+</html>

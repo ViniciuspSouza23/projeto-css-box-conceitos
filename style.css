@@ -1,0 +1,889 @@
+/* ==========================================================================
+   PROJETO: CSS BOX MODEL & FLEXBOX RESPONSIVO
+   Arquivo: style.css (Importado externamente via <link> no index.html)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET & VARIÁVEIS GLOBAIS
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-primary: #0b0f19;
+  --bg-surface: #111827;
+  --bg-card: #1f2937;
+  --bg-card-hover: #263346;
+  --border-color: #374151;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'Fira Code', monospace;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.6);
+  --transition-normal: all 0.25s ease-in-out;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex; /* [PROPRIEDADE FLEXBOX 1/20] display: flex */
+  flex-direction: column; /* [PROPRIEDADE FLEXBOX 2/20] flex-direction: column */
+}
+
+/* --------------------------------------------------------------------------
+   2. CABEÇALHO (HEADER) UTILIZANDO FLEXBOX
+   -------------------------------------------------------------------------- */
+.header-container {
+  display: flex; /* [PROPRIEDADE FLEXBOX 1/20] display: flex */
+  justify-content: space-between; /* [PROPRIEDADE FLEXBOX 3/20] justify-content: space-between */
+  align-items: center; /* [PROPRIEDADE FLEXBOX 4/20] align-items: center */
+  flex-wrap: wrap; /* [PROPRIEDADE FLEXBOX 5/20] flex-wrap: wrap */
+  gap: 20px; /* [PROPRIEDADE FLEXBOX 6/20] gap: 20px */
+  padding: 30px 48px;
+  background-color: var(--bg-surface);
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.header-brand {
+  max-width: 650px;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.header-nav {
+  display: flex; /* Flexbox para organizar os botões */
+  flex-direction: row; /* [PROPRIEDADE FLEXBOX 7/20] flex-direction: row */
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  color: var(--text-main);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition-normal);
+}
+
+.nav-btn:hover {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   3. ESTRUTURA PRINCIPAL & SEÇÕES
+   -------------------------------------------------------------------------- */
+.main-wrapper {
+  flex-grow: 1; /* [PROPRIEDADE FLEXBOX 8/20] flex-grow: 1 */
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.section {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  box-shadow: var(--shadow-md);
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. SEÇÃO 1: OS 20 ELEMENTOS COM PROPRIEDADES DO BOX MODEL
+      (Content [width/height/box-sizing], Padding, Border e Margin)
+   -------------------------------------------------------------------------- */
+.box-gallery-container {
+  display: flex;
+  flex-flow: row wrap; /* [PROPRIEDADE FLEXBOX 9/20] flex-flow: row wrap (shorthand de direction e wrap) */
+  justify-content: center; /* [PROPRIEDADE FLEXBOX 10/20] justify-content: center */
+  align-items: stretch; /* [PROPRIEDADE FLEXBOX 11/20] align-items: stretch */
+  align-content: space-between; /* [PROPRIEDADE FLEXBOX 12/20] align-content: space-between */
+  row-gap: 24px; /* [PROPRIEDADE FLEXBOX 13/20] row-gap */
+  column-gap: 20px; /* [PROPRIEDADE FLEXBOX 14/20] column-gap */
+}
+
+/* Estilo base compartilhado dos cards do Box Model */
+.box-element {
+  position: relative;
+  background-color: var(--bg-card);
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box-element:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--bg-card-hover);
+}
+
+.elem-badge {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.elem-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.elem-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spec-tag {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #cbd5e1;
+}
+
+/* ==========================================================================
+   ATRIBUIÇÃO INDIVIDUAL DAS PROPRIEDADES DO BOX MODEL PARA OS 20 ELEMENTOS:
+   (Content: width & height | Padding | Border | Margin)
+   ========================================================================== */
+
+/* Elemento 1 */
+.item-01 {
+  /* Content */
+  width: 260px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 16px;
+  /* Border */
+  border-width: 3px;
+  border-style: solid;
+  border-color: #6366f1;
+  border-radius: 8px;
+  /* Margin */
+  margin: 14px;
+}
+
+/* Elemento 2 */
+.item-02 {
+  /* Content */
+  width: 270px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding-top: 18px;
+  padding-right: 18px;
+  padding-bottom: 18px;
+  padding-left: 18px;
+  /* Border */
+  border-width: 4px;
+  border-style: dashed;
+  border-color: #3b82f6;
+  border-radius: 10px;
+  /* Margin */
+  margin: 12px;
+}
+
+/* Elemento 3 */
+.item-03 {
+  /* Content */
+  width: 280px;
+  height: 205px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 20px;
+  /* Border */
+  border-width: 3px;
+  border-style: double;
+  border-color: #10b981;
+  border-radius: 12px;
+  /* Margin */
+  margin: 16px;
+}
+
+/* Elemento 4 */
+.item-04 {
+  /* Content */
+  width: 250px;
+  height: 195px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 14px;
+  /* Border */
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f59e0b;
+  border-radius: 6px;
+  /* Margin */
+  margin: 15px;
+}
+
+/* Elemento 5 */
+.item-05 {
+  /* Content */
+  width: 290px;
+  height: 210px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 22px;
+  /* Border */
+  border-width: 4px;
+  border-style: groove;
+  border-color: #ef4444;
+  border-radius: 14px;
+  /* Margin */
+  margin: 18px;
+}
+
+/* Elemento 6 */
+.item-06 {
+  /* Content */
+  width: 275px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 15px;
+  /* Border */
+  border-width: 3px;
+  border-style: dotted;
+  border-color: #ec4899;
+  border-radius: 10px;
+  /* Margin */
+  margin: 10px;
+}
+
+/* Elemento 7 */
+.item-07 {
+  /* Content */
+  width: 265px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 19px;
+  /* Border */
+  border-width: 3px;
+  border-style: solid;
+  border-color: #8b5cf6;
+  border-radius: 8px;
+  /* Margin */
+  margin: 13px;
+}
+
+/* Elemento 8 */
+.item-08 {
+  /* Content */
+  width: 285px;
+  height: 205px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 17px;
+  /* Border */
+  border-width: 4px;
+  border-style: ridge;
+  border-color: #06b6d4;
+  border-radius: 12px;
+  /* Margin */
+  margin: 15px;
+}
+
+/* Elemento 9 */
+.item-09 {
+  /* Content */
+  width: 260px;
+  height: 195px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 21px;
+  /* Border */
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #14b8a6;
+  border-radius: 8px;
+  /* Margin */
+  margin: 11px;
+}
+
+/* Elemento 10 */
+.item-10 {
+  /* Content */
+  width: 270px;
+  height: 210px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 16px;
+  /* Border */
+  border-width: 3px;
+  border-style: solid;
+  border-color: #f97316;
+  border-radius: 10px;
+  /* Margin */
+  margin: 17px;
+}
+
+/* Elemento 11 */
+.item-11 {
+  /* Content */
+  width: 280px;
+  height: 205px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 23px;
+  /* Border */
+  border-width: 4px;
+  border-style: double;
+  border-color: #a855f7;
+  border-radius: 14px;
+  /* Margin */
+  margin: 14px;
+}
+
+/* Elemento 12 */
+.item-12 {
+  /* Content */
+  width: 255px;
+  height: 195px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 15px;
+  /* Border */
+  border-width: 2px;
+  border-style: solid;
+  border-color: #84cc16;
+  border-radius: 6px;
+  /* Margin */
+  margin: 16px;
+}
+
+/* Elemento 13 */
+.item-13 {
+  /* Content */
+  width: 275px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 20px;
+  /* Border */
+  border-width: 3px;
+  border-style: dashed;
+  border-color: #0284c7;
+  border-radius: 10px;
+  /* Margin */
+  margin: 12px;
+}
+
+/* Elemento 14 */
+.item-14 {
+  /* Content */
+  width: 265px;
+  height: 200px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 18px;
+  /* Border */
+  border-width: 4px;
+  border-style: solid;
+  border-color: #e11d48;
+  border-radius: 8px;
+  /* Margin */
+  margin: 15px;
+}
+
+/* Elemento 15 */
+.item-15 {
+  /* Content */
+  width: 290px;
+  height: 215px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 24px;
+  /* Border */
+  border-width: 3px;
+  border-style: dotted;
+  border-color: #d97706;
+  border-radius: 12px;
+  /* Margin */
+  margin: 19px;
+}
+
+/* Elemento 16 */
+.item-16 {
+  /* Content */
+  width: 260px;
+  height: 195px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 14px;
+  /* Border */
+  border-width: 2px;
+  border-style: solid;
+  border-color: #059669;
+  border-radius: 6px;
+  /* Margin */
+  margin: 13px;
+}
+
+/* Elemento 17 */
+.item-17 {
+  /* Content */
+  width: 270px;
+  height: 205px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 22px;
+  /* Border */
+  border-width: 3px;
+  border-style: ridge;
+  border-color: #7c3aed;
+  border-radius: 10px;
+  /* Margin */
+  margin: 16px;
+}
+
+/* Elemento 18 */
+.item-18 {
+  /* Content */
+  width: 285px;
+  height: 210px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 17px;
+  /* Border */
+  border-width: 4px;
+  border-style: double;
+  border-color: #2563eb;
+  border-radius: 12px;
+  /* Margin */
+  margin: 14px;
+}
+
+/* Elemento 19 */
+.item-19 {
+  /* Content */
+  width: 255px;
+  height: 195px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 16px;
+  /* Border */
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #db2777;
+  border-radius: 8px;
+  /* Margin */
+  margin: 11px;
+}
+
+/* Elemento 20 */
+.item-20 {
+  /* Content */
+  width: 300px;
+  height: 220px;
+  box-sizing: border-box;
+  /* Padding */
+  padding: 25px;
+  /* Border */
+  border-width: 4px;
+  border-style: solid;
+  border-color: #10b981;
+  border-radius: 16px;
+  /* Margin */
+  margin: 20px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. SEÇÃO 2: DEMONSTRAÇÃO PRÁTICA DE FLEXBOX
+   -------------------------------------------------------------------------- */
+.demo-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.demo-header {
+  margin-bottom: 16px;
+}
+
+.demo-header h4 {
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.demo-header code {
+  color: var(--accent-cyan);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-code);
+}
+
+.flex-showcase {
+  background-color: var(--bg-primary);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  min-height: 140px;
+}
+
+/* Demonstração 1: Space-Between, Flex-Grow e Align-Self */
+.showcase-between {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.flex-box-item {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  text-align: center;
+}
+
+.highlight-1 {
+  flex-grow: 1; /* [PROPRIEDADE FLEXBOX 15/20] flex-grow */
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+}
+
+.highlight-2 {
+  flex-grow: 2; /* flex-grow maior para ocupar dobro de espaço restante */
+  background: linear-gradient(135deg, #0e7490, #06b6d4);
+}
+
+.highlight-3 {
+  order: -1; /* [PROPRIEDADE FLEXBOX 16/20] order: -1 (move para o início) */
+  background: linear-gradient(135deg, #047857, #10b981);
+}
+
+.highlight-4 {
+  align-self: flex-end; /* [PROPRIEDADE FLEXBOX 17/20] align-self: flex-end */
+  background: linear-gradient(135deg, #b45309, #f59e0b);
+}
+
+/* Demonstração 2: Column Direction e Align-Items */
+.showcase-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.col-item-1 {
+  width: 70%;
+  align-self: flex-start; /* [PROPRIEDADE FLEXBOX 18/20] align-self: flex-start */
+  background: linear-gradient(135deg, #701a75, #ec4899);
+}
+
+.col-item-2 {
+  width: 50%;
+  align-self: center; /* [PROPRIEDADE FLEXBOX 19/20] align-self: center */
+  background: linear-gradient(135deg, #3730a3, #4f46e5);
+}
+
+.col-item-3 {
+  width: 70%;
+  align-self: flex-end;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+/* Demonstração 3: Inline-Flex e Space-Evenly */
+.inline-flex-wrapper {
+  text-align: center;
+}
+
+.showcase-inline {
+  display: inline-flex; /* [PROPRIEDADE FLEXBOX 20/20] display: inline-flex */
+  justify-content: space-evenly; /* [PROPRIEDADE FLEXBOX 21/20] justify-content: space-evenly */
+  align-items: center;
+  gap: 16px;
+  background-color: #1e1b4b;
+  border: 1px solid #4338ca;
+  padding: 12px 28px;
+  border-radius: 9999px;
+}
+
+.badge-tag {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-shrink: 0; /* [PROPRIEDADE FLEXBOX 22/20] flex-shrink: 0 */
+  flex-basis: 75px; /* [PROPRIEDADE FLEXBOX 23/20] flex-basis */
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   6. SEÇÃO 3: GRID DE APRESENTAÇÃO DAS PROPRIEDADES FLEXBOX
+   -------------------------------------------------------------------------- */
+.props-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.prop-card {
+  flex: 1 1 calc(25% - 18px); /* [PROPRIEDADE FLEXBOX 24/20] flex: shorthand (grow, shrink, basis) */
+  min-width: 240px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* [PROPRIEDADE FLEXBOX 25/20] justify-content: flex-start */
+  gap: 10px;
+  transition: var(--transition-normal);
+}
+
+.prop-card:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.prop-num {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.prop-card code {
+  font-family: var(--font-code);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.prop-card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   7. RODAPÉ (FOOTER)
+   -------------------------------------------------------------------------- */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 48px;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+}
+
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.back-to-top {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition-normal);
+}
+
+.back-to-top:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVIDADE (MEDIA QUERIES)
+   -------------------------------------------------------------------------- */
+
+/* Telas médias (Tablets e Laptops menores: até 1024px) */
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 24px 30px;
+  }
+
+  .prop-card {
+    flex: 1 1 calc(50% - 18px);
+  }
+}
+
+/* Telas intermediárias (Tablets e Smartphones horizontais: até 768px) */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Altera header para fluxo vertical no mobile */
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .header-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 1.7rem;
+  }
+
+  .section {
+    padding: 24px 16px;
+  }
+
+  /* Ajuste dos 20 elementos para telas menores */
+  .box-element {
+    width: 100% !important;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .showcase-between {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .col-item-1, .col-item-2, .col-item-3 {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .props-grid-container {
+    flex-direction: column;
+  }
+
+  .prop-card {
+    flex: 1 1 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+/* Telas muito pequenas (Smartphones menores: até 480px) */
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.4rem;
+  }
+
+  .badge-tag {
+    flex-basis: 100%;
+  }
+
+  .showcase-inline {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+}
