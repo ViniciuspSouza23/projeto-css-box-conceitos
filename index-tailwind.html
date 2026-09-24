@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind CSS - Box Model & Flexbox Interativo</title>
+  <!-- Google Fonts: Inter & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Compilado do Tailwind CSS v4 -->
+  <link rel="stylesheet" href="dist/output.css">
+  
+  <!-- Fallback do Tailwind v4 via Browser CDN (para execução autônoma instantânea) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @layer base {
+      html {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+      }
+      code, pre, .font-mono {
+        font-family: 'Fira Code', monospace;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- BARRA DE ALTERNÂNCIA DE VERSÕES (VANILLA CSS vs TAILWIND CSS) -->
+  <div class="bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-950 border-b border-indigo-900/50 py-2.5 px-4 text-xs font-medium text-slate-300">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+          Versão Tailwind CSS v4
+        </span>
+        <span class="text-slate-400 hidden sm:inline">Classes utilitárias nativas e compiladas via @tailwindcss/cli</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-slate-400">Alternar modo:</span>
+        <a href="index.html" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition">
+          📄 Versão Vanilla CSS
+        </a>
+        <span class="px-2.5 py-1 rounded-md bg-indigo-600 text-white font-semibold shadow-sm shadow-indigo-500/30">
+          ⚡ Versão Tailwind CSS
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO HERO COM FLEXBOX -->
+  <header class="bg-slate-900 border-b border-slate-800 shadow-xl px-6 py-8 md:px-12 md:py-10" id="topo">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      
+      <!-- Marca e Apresentação -->
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-md shadow-indigo-500/20 mb-3">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.163-7.333-3.855-7.333 3.855 1.399-8.163-5.934-5.784 8.2-1.192zm0 5.702l-2.223 4.503-4.969.722 3.596 3.505-.848 4.947 4.444-2.336 4.444 2.336-.848-4.947 3.596-3.505-4.969-.722z"/></svg>
+          Guia Interativo com Tailwind CSS
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent mb-3">
+          CSS Box Model & Flexbox Master
+        </h1>
+        <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+          Demonstração prática dos conceitos de <span class="text-indigo-400 font-semibold">Content</span>, <span class="text-cyan-400 font-semibold">Padding</span>, <span class="text-emerald-400 font-semibold">Border</span> e <span class="text-amber-400 font-semibold">Margin</span> aplicados em 20 elementos individuais e 20+ propriedades Flexbox usando <span class="text-sky-400 font-semibold">Tailwind CSS utilitário</span>.
+        </p>
+      </div>
+
+      <!-- Navegação Rápida com Flexbox -->
+      <nav class="flex flex-wrap gap-2.5 items-center">
+        <a href="#box-model" class="px-4 py-2.5 rounded-lg bg-slate-800/90 hover:bg-indigo-600 text-slate-200 hover:text-white border border-slate-700/80 hover:border-indigo-500 text-xs sm:text-sm font-semibold transition duration-200 shadow-sm hover:shadow-indigo-500/25 hover:-translate-y-0.5">
+          📦 1. Box Model (20 Elementos)
+        </a>
+        <a href="#flexbox-demo" class="px-4 py-2.5 rounded-lg bg-slate-800/90 hover:bg-indigo-600 text-slate-200 hover:text-white border border-slate-700/80 hover:border-indigo-500 text-xs sm:text-sm font-semibold transition duration-200 shadow-sm hover:shadow-indigo-500/25 hover:-translate-y-0.5">
+          ⚡ 2. Demos Flexbox
+        </a>
+        <a href="#propriedades-flex" class="px-4 py-2.5 rounded-lg bg-slate-800/90 hover:bg-indigo-600 text-slate-200 hover:text-white border border-slate-700/80 hover:border-indigo-500 text-xs sm:text-sm font-semibold transition duration-200 shadow-sm hover:shadow-indigo-500/25 hover:-translate-y-0.5">
+          📋 3. 24 Propriedades Tailwind
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-12">
+
+    <!-- SEÇÃO 1: OS 20 ELEMENTOS COM BOX MODEL COMPLETO NO TAILWIND -->
+    <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl" id="box-model">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="mb-8 border-b border-slate-800/80 pb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+            <span>📦</span> Os 20 Elementos (Box Model em Tailwind CSS)
+          </h2>
+          <span class="text-xs font-mono font-medium px-3 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            flex flex-wrap justify-center
+          </span>
+        </div>
+        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+          Cada um dos 20 elementos abaixo possui valores individuais e explícitos definidos nas 4 camadas essenciais do Box Model, estilizados exclusivamente através de classes utilitárias do Tailwind CSS:
+          <strong class="text-indigo-400">Content (w-[px] / h-[px])</strong>,
+          <strong class="text-cyan-400">Padding (p-[px])</strong>,
+          <strong class="text-emerald-400">Border (border-[px] border-[style] border-[color])</strong> e
+          <strong class="text-amber-400">Margin (m-[px])</strong>.
+        </p>
+      </div>
+
+      <!-- Container Flexbox com os 20 Elementos -->
+      <div class="flex flex-row flex-wrap justify-center items-stretch content-between gap-x-5 gap-y-6">
+
+        <!-- Elemento 01 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[260px] h-[200px] box-border p-4 border-[3px] border-solid border-indigo-500 m-[14px] rounded-lg">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">01</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Alpha</h3>
+            <span class="text-[11px] font-mono text-indigo-300 font-medium">w-[260px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 260x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-4 (16px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-emerald-300">border-[3px] border-indigo-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[14px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 02 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[270px] h-[200px] box-border p-[18px] border-4 border-dashed border-blue-500 m-3 rounded-[10px]">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">02</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Beta</h3>
+            <span class="text-[11px] font-mono text-blue-300 font-medium">w-[270px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 270x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[18px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-blue-300">border-4 border-dashed border-blue-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-3 (12px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 03 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[280px] h-[205px] box-border p-5 border-[3px] border-double border-emerald-500 m-4 rounded-xl">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">03</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Gamma</h3>
+            <span class="text-[11px] font-mono text-emerald-300 font-medium">w-[280px] h-[205px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 280x205px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-5 (20px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-emerald-300">border-[3px] border-double border-emerald-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-4 (16px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 04 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[250px] h-[195px] box-border p-3.5 border-2 border-solid border-amber-500 m-[15px] rounded-md">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">04</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Delta</h3>
+            <span class="text-[11px] font-mono text-amber-300 font-medium">w-[250px] h-[195px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 250x195px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-3.5 (14px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">border-2 border-amber-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[15px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 05 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[290px] h-[210px] box-border p-[22px] border-4 border-red-500 m-[18px] rounded-[14px]" style="border-style: groove;">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">05</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Epsilon</h3>
+            <span class="text-[11px] font-mono text-red-300 font-medium">w-[290px] h-[210px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 290x210px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[22px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-red-300">border-4 border-red-500 (groove)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[18px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 06 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[275px] h-[200px] box-border p-[15px] border-[3px] border-dotted border-pink-500 m-2.5 rounded-[10px]">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">06</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Zeta</h3>
+            <span class="text-[11px] font-mono text-pink-300 font-medium">w-[275px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 275x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[15px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-pink-300">border-[3px] border-dotted border-pink-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-2.5 (10px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 07 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[265px] h-[200px] box-border p-[19px] border-[3px] border-solid border-purple-500 m-[13px] rounded-lg">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">07</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Eta</h3>
+            <span class="text-[11px] font-mono text-purple-300 font-medium">w-[265px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 265x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[19px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-purple-300">border-[3px] border-purple-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[13px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 08 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[285px] h-[205px] box-border p-[17px] border-4 border-cyan-500 m-[15px] rounded-xl" style="border-style: ridge;">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">08</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Theta</h3>
+            <span class="text-[11px] font-mono text-cyan-300 font-medium">w-[285px] h-[205px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 285x205px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[17px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">border-4 border-cyan-500 (ridge)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[15px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 09 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[260px] h-[195px] box-border p-[21px] border-2 border-dashed border-teal-500 m-[11px] rounded-lg">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">09</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Iota</h3>
+            <span class="text-[11px] font-mono text-teal-300 font-medium">w-[260px] h-[195px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 260x195px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[21px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-teal-300">border-2 border-dashed border-teal-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[11px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 10 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[270px] h-[210px] box-border p-4 border-[3px] border-solid border-orange-500 m-[17px] rounded-[10px]">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">10</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Kappa</h3>
+            <span class="text-[11px] font-mono text-orange-300 font-medium">w-[270px] h-[210px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 270x210px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-4 (16px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-orange-300">border-[3px] border-orange-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[17px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 11 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[280px] h-[205px] box-border p-[23px] border-4 border-double border-purple-500 m-3.5 rounded-[14px]">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">11</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Lambda</h3>
+            <span class="text-[11px] font-mono text-purple-300 font-medium">w-[280px] h-[205px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 280x205px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[23px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-purple-300">border-4 border-double border-purple-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-3.5 (14px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 12 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[255px] h-[195px] box-border p-[15px] border-2 border-solid border-lime-500 m-4 rounded-md">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">12</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Mu</h3>
+            <span class="text-[11px] font-mono text-lime-300 font-medium">w-[255px] h-[195px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 255x195px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[15px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-lime-300">border-2 border-lime-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-4 (16px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 13 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[275px] h-[200px] box-border p-5 border-[3px] border-dashed border-sky-600 m-3 rounded-[10px]">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">13</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Nu</h3>
+            <span class="text-[11px] font-mono text-sky-300 font-medium">w-[275px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 275x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-5 (20px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-sky-300">border-[3px] border-dashed border-sky-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-3 (12px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 14 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[265px] h-[200px] box-border p-[18px] border-4 border-solid border-rose-600 m-[15px] rounded-lg">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">14</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Xi</h3>
+            <span class="text-[11px] font-mono text-rose-300 font-medium">w-[265px] h-[200px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 265x200px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[18px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-rose-300">border-4 border-rose-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[15px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 15 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[290px] h-[215px] box-border p-6 border-[3px] border-dotted border-amber-600 m-[19px] rounded-xl">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">15</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Omicron</h3>
+            <span class="text-[11px] font-mono text-amber-300 font-medium">w-[290px] h-[215px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 290x215px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-6 (24px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">border-[3px] border-dotted border-amber-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[19px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 16 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[260px] h-[195px] box-border p-3.5 border-2 border-solid border-emerald-600 m-[13px] rounded-md">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">16</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Pi</h3>
+            <span class="text-[11px] font-mono text-emerald-300 font-medium">w-[260px] h-[195px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 260x195px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-3.5 (14px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-emerald-300">border-2 border-emerald-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[13px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 17 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[270px] h-[205px] box-border p-[22px] border-[3px] border-purple-600 m-4 rounded-[10px]" style="border-style: ridge;">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">17</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Rho</h3>
+            <span class="text-[11px] font-mono text-purple-300 font-medium">w-[270px] h-[205px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 270x205px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[22px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-purple-300">border-[3px] border-purple-600 (ridge)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-4 (16px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 18 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[285px] h-[210px] box-border p-[17px] border-4 border-double border-blue-600 m-3.5 rounded-xl">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">18</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Sigma</h3>
+            <span class="text-[11px] font-mono text-blue-300 font-medium">w-[285px] h-[210px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 285x210px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[17px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-blue-300">border-4 border-double border-blue-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-3.5 (14px)</span>
+          </div>
+        </article>
+
+        <!-- Elemento 19 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[255px] h-[195px] box-border p-4 border-2 border-dashed border-pink-600 m-[11px] rounded-lg">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">19</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Tau</h3>
+            <span class="text-[11px] font-mono text-pink-300 font-medium">w-[255px] h-[195px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 255x195px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-4 (16px)</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-pink-300">border-2 border-dashed border-pink-600</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-[11px]</span>
+          </div>
+        </article>
+
+        <!-- Elemento 20 -->
+        <article class="relative flex flex-col justify-between bg-slate-800/80 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl transition duration-200 w-[300px] h-[220px] box-border p-[25px] border-4 border-solid border-emerald-500 m-5 rounded-2xl">
+          <span class="absolute top-2 right-2.5 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-slate-300">20</span>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Elemento Upsilon</h3>
+            <span class="text-[11px] font-mono text-emerald-300 font-medium">w-[300px] h-[220px]</span>
+          </div>
+          <div class="flex flex-col gap-1.5 font-mono text-[11px]">
+            <span class="bg-black/40 px-2 py-1 rounded text-slate-300">Content: 300x220px</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-cyan-300">p-[25px]</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-emerald-300">border-4 border-emerald-500</span>
+            <span class="bg-black/40 px-2 py-1 rounded text-amber-300">m-5 (20px)</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: DEMONSTRAÇÕES PRÁTICAS DE FLEXBOX NO TAILWIND -->
+    <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl" id="flexbox-demo">
+      <div class="mb-8 border-b border-slate-800/80 pb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3 mb-2">
+          <span>⚡</span> Demonstrações Práticas de Flexbox com Tailwind CSS
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Exemplos visuais e dinâmicos controlados exclusivamente pelas classes utilitárias de Flexbox: <code class="font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded">flex</code>, <code class="font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded">justify-*</code>, <code class="font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded">items-*</code>, <code class="font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded">grow</code> e <code class="font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded">self-*</code>.
+        </p>
+      </div>
+
+      <!-- Demo A: Justify-Between, Wrap, Grow & Order -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h3 class="text-base sm:text-lg font-semibold text-white">
+            1. Distribuição: <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">justify-between</code> & <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">flex-wrap</code>
+          </h3>
+          <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-700">
+            flex flex-row flex-wrap justify-between items-center gap-4
+          </span>
+        </div>
+        <div class="bg-slate-950 border-2 border-dashed border-slate-800 rounded-lg p-5 min-h-[140px] flex flex-row flex-wrap justify-between items-center gap-4">
+          <div class="grow bg-gradient-to-r from-indigo-700 to-indigo-600 text-white p-4 rounded-lg font-medium text-center shadow-lg border border-indigo-500/30">
+            Item A <span class="block text-xs font-mono text-indigo-200 mt-0.5">grow (flex-grow: 1)</span>
+          </div>
+          <div class="grow-[2] bg-gradient-to-r from-cyan-700 to-cyan-600 text-white p-4 rounded-lg font-medium text-center shadow-lg border border-cyan-500/30">
+            Item B <span class="block text-xs font-mono text-cyan-200 mt-0.5">grow-[2] (flex-grow: 2)</span>
+          </div>
+          <div class="-order-1 bg-gradient-to-r from-emerald-700 to-emerald-600 text-white p-4 rounded-lg font-medium text-center shadow-lg border border-emerald-500/30">
+            Item C <span class="block text-xs font-mono text-emerald-200 mt-0.5">-order-1 (order: -1)</span>
+          </div>
+          <div class="self-end bg-gradient-to-r from-amber-700 to-amber-600 text-white p-4 rounded-lg font-medium text-center shadow-lg border border-amber-500/30">
+            Item D <span class="block text-xs font-mono text-amber-200 mt-0.5">self-end (align-self: flex-end)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo B: Column Direction & Align-Items -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h3 class="text-base sm:text-lg font-semibold text-white">
+            2. Fluxo Vertical: <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">flex-col</code> & <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">items-center</code>
+          </h3>
+          <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-700">
+            flex flex-col justify-center items-center gap-3.5
+          </span>
+        </div>
+        <div class="bg-slate-950 border-2 border-dashed border-slate-800 rounded-lg p-5 flex flex-col justify-center items-center gap-3.5">
+          <div class="w-full sm:w-[70%] self-start bg-gradient-to-r from-pink-800 to-pink-600 text-white p-3.5 rounded-lg font-medium text-center shadow-md border border-pink-500/30">
+            Item Superior <span class="block text-xs font-mono text-pink-200 mt-0.5">self-start (align-self: flex-start)</span>
+          </div>
+          <div class="w-full sm:w-[50%] self-center bg-gradient-to-r from-indigo-800 to-indigo-600 text-white p-3.5 rounded-lg font-medium text-center shadow-md border border-indigo-500/30">
+            Item Central <span class="block text-xs font-mono text-indigo-200 mt-0.5">self-center (align-self: center)</span>
+          </div>
+          <div class="w-full sm:w-[70%] self-end bg-gradient-to-r from-blue-800 to-blue-600 text-white p-3.5 rounded-lg font-medium text-center shadow-md border border-blue-500/30">
+            Item Inferior <span class="block text-xs font-mono text-blue-200 mt-0.5">self-end (align-self: flex-end)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo C: Inline-Flex e Space-Evenly -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h3 class="text-base sm:text-lg font-semibold text-white">
+            3. Container Inline-Flex: <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">inline-flex</code> & <code class="font-mono text-indigo-400 bg-slate-950 px-2 py-0.5 rounded">justify-evenly</code>
+          </h3>
+          <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-700">
+            inline-flex justify-evenly items-center gap-4
+          </span>
+        </div>
+        <div class="text-center py-3">
+          <div class="inline-flex flex-wrap sm:flex-nowrap justify-evenly items-center gap-4 bg-indigo-950/80 border border-indigo-600/60 px-6 py-3.5 rounded-full shadow-inner shadow-indigo-950">
+            <span class="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold shrink-0 basis-[75px] text-center shadow-sm">
+              Tag 1
+            </span>
+            <span class="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold shrink-0 basis-[75px] text-center shadow-sm">
+              Tag 2
+            </span>
+            <span class="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold shrink-0 basis-[75px] text-center shadow-sm">
+              Tag 3
+            </span>
+            <span class="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold shrink-0 basis-[75px] text-center shadow-sm">
+              Tag 4
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: MAPEAMENTO DE 24 PROPRIEDADES FLEXBOX PARA TAILWIND CSS -->
+    <section class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl" id="propriedades-flex">
+      <div class="mb-8 border-b border-slate-800/80 pb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3 mb-2">
+          <span>📋</span> Dicionário: CSS Nativo ➔ Classes Tailwind CSS
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Guia de equivalência das 24 propriedades de Flexbox utilizadas no projeto com suas respectivas classes utilitárias no Tailwind:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        
+        <!-- 01 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#01</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">display: flex;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Torna o contêiner flexível de bloco.</p>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#02</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">inline-flex</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">display: inline-flex;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Cria um contêiner flexível com comportamento inline.</p>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#03</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-row</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-direction: row;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Organiza os itens na horizontal da esquerda para a direita.</p>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#04</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-col</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-direction: column;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Organiza os itens no eixo vertical de cima para baixo.</p>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#05</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-row-reverse</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-direction: row-reverse;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Inverte o sentido horizontal dos elementos flexíveis.</p>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#06</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-col-reverse</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-direction: column-reverse;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Inverte o sentido vertical dos elementos flexíveis.</p>
+          </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#07</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-wrap</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-wrap: wrap;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Permite a quebra dos elementos em várias linhas.</p>
+          </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#08</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-nowrap</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-wrap: nowrap;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Mantém todos os elementos sempre na mesma linha.</p>
+          </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#09</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-wrap-reverse</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-wrap: wrap-reverse;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Quebra as linhas adicionais no sentido invertido.</p>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#10</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-row flex-wrap</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-flow: row wrap;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Combinação simultânea de direção horizontal e quebra.</p>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#11</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">justify-center</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">justify-content: center;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Centraliza os itens ao longo do eixo principal.</p>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#12</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">justify-between</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">justify-content: space-between;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Espalha itens uniformemente; extremidades tocam as bordas.</p>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#13</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">justify-around</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">justify-content: space-around;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Distribui itens com espaço igual ao redor de cada um.</p>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#14</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">justify-evenly</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">justify-content: space-evenly;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Espaçamento estritamente igual entre itens e bordas.</p>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#15</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">items-center</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">align-items: center;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Alinha itens no centro do eixo transversal/cruzado.</p>
+          </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#16</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">items-stretch</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">align-items: stretch;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Estica os itens para preencher toda a altura transversal.</p>
+          </div>
+        </div>
+
+        <!-- 17 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#17</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">content-between</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">align-content: space-between;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Distribui as linhas flexíveis quando há quebra.</p>
+          </div>
+        </div>
+
+        <!-- 18 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#18</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">gap-6</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">gap: 24px; (row & col)</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Espaçamento nativo e limpo entre colunas e linhas flex.</p>
+          </div>
+        </div>
+
+        <!-- 19 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#19</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">order-1 / -order-1</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">order: 1; / order: -1;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Modifica a ordem de exibição visual de um filho específico.</p>
+          </div>
+        </div>
+
+        <!-- 20 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#20</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">grow</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-grow: 1;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Permite que o elemento cresça para ocupar espaço restante.</p>
+          </div>
+        </div>
+
+        <!-- 21 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#21</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">shrink-0</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-shrink: 0;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Impede o encolhimento do item quando o contêiner aperta.</p>
+          </div>
+        </div>
+
+        <!-- 22 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#22</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">basis-[75px]</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex-basis: 75px;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Define a dimensão base inicial antes de crescer ou encolher.</p>
+          </div>
+        </div>
+
+        <!-- 23 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#23</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">flex-1 / flex-initial</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">flex: 1 1 auto;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Shorthand combinando flex-grow, flex-shrink e flex-basis.</p>
+          </div>
+        </div>
+
+        <!-- 24 -->
+        <div class="flex flex-col justify-between bg-slate-800/70 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500 rounded-xl p-4 transition duration-200">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-cyan-400">#24</span>
+              <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">self-end / self-start</span>
+            </div>
+            <code class="block font-mono text-xs font-semibold text-white bg-slate-950 p-2 rounded mb-2">align-self: flex-end;</code>
+            <p class="text-slate-400 text-xs leading-relaxed">Sobrescreve o alinhamento de um item filho individualmente.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ RESPONSIVO EM FLEXBOX COM TAILWIND -->
+  <footer class="bg-slate-900 border-t border-slate-800 px-6 py-6 md:px-12 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-400 text-center sm:text-left">
+      <p>&copy; 2026 Projeto CSS Box Conceitos & Flexbox - Desenvolvido com Tailwind CSS v4</p>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="text-indigo-400 hover:text-white transition">Ir para versão Vanilla CSS</a>
+        <a href="#topo" class="text-cyan-400 hover:text-white hover:underline transition font-semibold">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
